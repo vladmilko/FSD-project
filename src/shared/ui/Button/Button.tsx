@@ -17,12 +17,12 @@ export const Button: FC<ButtonProps> = ({
   theme,
   ...otherProps
 }) => (
-  <Button
+  <button
     type="button"
     className={classNames(cls.Button, {}, [cls[theme], className])}
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...otherProps}
   >
     {children}
-  </Button>
+  </button>
 );

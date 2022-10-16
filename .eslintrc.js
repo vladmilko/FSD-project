@@ -41,6 +41,18 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
+    'react/jsx-wrap-multilines': [
+      'warn',
+      {
+        declaration: 'parens',
+        assignment: 'parens',
+        return: 'parens',
+        arrow: 'parens',
+        condition: 'ignore',
+        logical: 'ignore',
+        prop: 'ignore',
+      },
+    ],
   },
   globals: {
     __IS_DEV__: true,
