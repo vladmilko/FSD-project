@@ -4,6 +4,7 @@ import cls from './Button.module.scss';
 
 export const enum ThemeButton {
   CLEAR = 'clear',
+  OUTLINE = 'outline',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,18 +12,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ThemeButton;
 }
 
-export const Button: FC<ButtonProps> = ({
-  className,
-  children,
-  theme,
-  ...otherProps
-}) => (
-  <button
-    type="button"
-    className={classNames(cls.Button, {}, [cls[theme], className])}
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...otherProps}
-  >
-    {children}
-  </button>
-);
+export const Button: FC<ButtonProps> = (props) => {
+  const { className, children, theme, ...otherProps } = props;
+
+  return (
+    <button
+      type="button"
+      className={classNames(cls.Button, { [cls[theme]]: true }, [className])}
+      {...otherProps}
+    >
+      {children}
+    </button>
+  );
+};
