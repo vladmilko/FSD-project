@@ -2,16 +2,21 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
+    jest: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "plugin:i18next/recommended", "prettier", "plugin:storybook/recommended"],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:i18next/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'i18next'],
   rules: {
@@ -30,37 +35,54 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     'object-curly-newline': 'off',
-    'max-len': ['error', {
-      code: 120,
-      ignoreComments: true
-    }],
-    'react/jsx-filename-extension': [2, {
-      extensions: ['.js', '.jsx', '.tsx']
-    }],
-    'i18next/no-literal-string': ['error', {
-      markupOnly: true,
-      ignoreAttribute: ['data-testid', 'to']
-    }],
-    '@typescript-eslint/no-unused-vars': ['warn', {
-      argsIgnorePattern: '^_'
-    }],
-    'react/jsx-wrap-multilines': ['warn', {
-      declaration: 'parens',
-      assignment: 'parens',
-      return: 'parens',
-      arrow: 'parens',
-      condition: 'ignore',
-      logical: 'ignore',
-      prop: 'ignore'
-    }]
+    'max-len': [
+      'error',
+      {
+        code: 120,
+        ignoreComments: true,
+      },
+    ],
+    'react/jsx-filename-extension': [
+      2,
+      {
+        extensions: ['.js', '.jsx', '.tsx'],
+      },
+    ],
+    'i18next/no-literal-string': [
+      'error',
+      {
+        markupOnly: true,
+        ignoreAttribute: ['data-testid', 'to'],
+      },
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'react/jsx-wrap-multilines': [
+      'warn',
+      {
+        declaration: 'parens',
+        assignment: 'parens',
+        return: 'parens',
+        arrow: 'parens',
+        condition: 'ignore',
+        logical: 'ignore',
+        prop: 'ignore',
+      },
+    ],
   },
   globals: {
-    __IS_DEV__: true
+    __IS_DEV__: true,
   },
-  overrides: [{
-    files: ['**/src/**/*.test.{ts,tsx}'],
-    rules: {
-      'i18next/no-literal-string': 'off'
-    }
-  }]
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
+  ],
 };
