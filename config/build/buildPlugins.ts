@@ -30,6 +30,15 @@ export function buildPlugins({
       new ReactRefreshWebpackPlugin(),
       new BundleAnalyzerPlugin({ openAnalyzer: withAnalyze }),
     );
+
+    if (!isDev) {
+      PLUGINS.push(
+        new MiniCssExtractPlugin({
+          filename: 'css/[name].[contenthash:8].css',
+          chunkFilename: 'css/[name].[contenthash:8].css',
+        }),
+      );
+    }
   }
 
   return PLUGINS;
