@@ -1,9 +1,7 @@
-import { ThemeContext } from "app/providers/ThemeProvider/lib/ThemeContext";
 import {
   MouseEvent,
   ReactNode,
   useCallback,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -24,7 +22,6 @@ const ANIMATION_DELAY = 300;
 export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
-  const { theme } = useContext(ThemeContext);
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -64,7 +61,7 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 
   return (
     <Portal>
-      <div className={classNames(cls.Modal, mods, [className, cls[theme]])}>
+      <div className={classNames(cls.Modal, mods, [className])}>
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>
             {children}
