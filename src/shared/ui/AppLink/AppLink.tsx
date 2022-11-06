@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './AppLink.module.scss';
@@ -14,17 +14,19 @@ interface AppLinkProps extends LinkProps {
   theme?: AppLinkTheme;
 }
 
-export const AppLink: FC<AppLinkProps> = ({
-  className,
-  theme = AppLinkTheme.PRIMARY,
-  children,
-  ...otherProps
-}) => (
-  <Link
-    className={classNames(cls.AppLink, {}, [className, cls[theme]])}
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...otherProps}
-  >
-    {children}
-  </Link>
+export const AppLink = memo(
+  ({
+    className,
+    theme = AppLinkTheme.PRIMARY,
+    children,
+    ...otherProps
+  }: AppLinkProps) => (
+    <Link
+      className={classNames(cls.AppLink, {}, [className, cls[theme]])}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...otherProps}
+    >
+      {children}
+    </Link>
+  ),
 );
