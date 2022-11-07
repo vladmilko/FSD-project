@@ -1,14 +1,15 @@
 import {
   MouseEvent,
+  MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
   useRef,
   useState,
-} from "react";
-import { classNames } from "shared/lib/classNames/classNames";
-import { Portal } from "../Portal/Portal";
-import cls from "./Modal.module.scss";
+} from 'react';
+import { classNames, ClassnamesMods } from 'shared/lib/classNames/classNames';
+import { Portal } from '../Portal/Portal';
+import cls from './Modal.module.scss';
 
 interface ModalProps {
   className?: string;
@@ -27,7 +28,7 @@ export const Modal = ({
   onClose,
   lazy,
 }: ModalProps) => {
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -47,7 +48,7 @@ export const Modal = ({
 
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         closeHandler();
       }
     },
@@ -62,16 +63,19 @@ export const Modal = ({
 
   useEffect(() => {
     if (isOpen) {
-      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener('keydown', onKeyDown);
     }
 
     return () => {
       clearTimeout(timerRef.current);
-      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
 
-  const mods = { [cls.opened]: isOpen, [cls.isClosing]: isClosing };
+  const mods: ClassnamesMods = {
+    [cls.opened]: isOpen,
+    [cls.isClosing]: isClosing,
+  };
 
   if (lazy && !isMounted) {
     return null;
