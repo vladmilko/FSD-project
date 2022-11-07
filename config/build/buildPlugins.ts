@@ -9,6 +9,7 @@ export function buildPlugins({
   paths,
   isDev,
   withAnalyze,
+  apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
   const PLUGINS: webpack.WebpackPluginInstance[] = [
     new HtmlWebpackPlugin({
@@ -17,6 +18,7 @@ export function buildPlugins({
     new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
   ];
 
