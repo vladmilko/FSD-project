@@ -13,7 +13,7 @@ export default (env: BuildEnv) => {
 
   const MODE = env.mode || 'development';
   const ISDEV = MODE === 'development';
-  const WITH_ANALYZER = Boolean(env.analyze === '1');
+  const WITH_ANALYZER = env?.analyze === '1';
   const PORT = env.port || 3000;
   const API_URL = env.apiUrl || 'http://localhost:8000';
 

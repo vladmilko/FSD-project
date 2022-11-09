@@ -22,11 +22,14 @@ export function buildPlugins({
     }),
   ];
 
+  if (withAnalyze) {
+    PLUGINS.push(new BundleAnalyzerPlugin());
+  }
+
   if (isDev) {
     PLUGINS.push(
       new webpack.HotModuleReplacementPlugin(),
       new ReactRefreshWebpackPlugin(),
-      new BundleAnalyzerPlugin({ openAnalyzer: withAnalyze }),
     );
   }
 
