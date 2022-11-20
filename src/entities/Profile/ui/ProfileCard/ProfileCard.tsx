@@ -20,7 +20,7 @@ interface ProfileCardProps {
   onChangeAvatar?: (value: string) => void;
   onChangeCurrency: (currency: Currency) => void;
   onChangeCountry: (country: Country) => void;
-  error?: string;
+  error?: boolean;
   isLoading?: boolean;
   readonly?: boolean;
 }
