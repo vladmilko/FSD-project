@@ -3,15 +3,15 @@ import { Currency } from 'entities/Currency';
 import {
   fetchProfileData,
   getProfileError,
+  getProfileForm,
   getProfileIsLoading,
   getProfileReadonly,
-  getProvileValidationErrors,
+  getProfileValidationErrors,
   profileActions,
   ProfileCard,
   profileReducer,
+  ValidateProfileError,
 } from 'entities/Profile';
-import { getProfileForm } from 'entities/Profile/model/selectors/getProfileForm/getProfileForm';
-import { ValidateProfileError } from 'entities/Profile/model/types/profile';
 import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -41,7 +41,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
-  const validationErrors = useSelector(getProvileValidationErrors);
+  const validationErrors = useSelector(getProfileValidationErrors);
 
   const validationErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
@@ -52,7 +52,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   };
 
   useEffect(() => {
-    dispatch(fetchProfileData());
+    if (__PROJECT__ !== 'storybook') {
+      dispatch(fetchProfileData());
+    }
   }, [dispatch]);
 
   const onChangeFirstname = useCallback(
