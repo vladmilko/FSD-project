@@ -1,8 +1,13 @@
 import { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './ArticlesPage.module.scss';
 
-const ArticlesPage = () => (
-  // eslint-disable-next-line i18next/no-literal-string
-  <div>ArticlesPage</div>
+interface ArticlesPageProps {
+  className: string;
+}
+
+const ArticlesPage = ({ className }: ArticlesPageProps) => (
+  <div className={classNames(cls.ArticlesPage, {}, [className])} />
 );
 
 export default memo(ArticlesPage);
