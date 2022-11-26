@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Text } from 'shared/ui/Text/Text';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
+import { CommentCardSkeleton } from '../CommentCard/CommentCardSkeleton';
 import cls from './CommentList.module.scss';
 
 interface CommentListProps {
@@ -17,6 +18,16 @@ export const CommentList = ({
   isLoading,
 }: CommentListProps) => {
   const { t } = useTranslation();
+
+  if (isLoading) {
+    return (
+      <div className={classNames(cls.CommentList, {}, [className])}>
+        <CommentCardSkeleton />
+        <CommentCardSkeleton />
+        <CommentCardSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(cls.CommentList, {}, [className])}>

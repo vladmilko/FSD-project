@@ -1,6 +1,6 @@
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -12,6 +12,8 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text } from 'shared/ui/Text/Text';
+import { AddCommentForm } from 'features/AddCommentForm';
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import {
@@ -36,19 +38,26 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const comments = useSelector(getArticleComments.selectAll);
   const commentIsLoading = useSelector(getArticleCommentsIsLoading);
 
+  const onSendComment = useCallback(
+    (text: string) => {
+      dispatch(addCommentForArticle(text));
+    },
+    [dispatch],
+  );
+
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(articleId));
   });
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         {articleId && <ArticleDetails articleId={articleId} />}
         {!articleId && t('Статья не найдена')}
 
-        {!commentIsLoading && (
-          <Text title={t('Комментарии')} className={cls.commentTitle} />
-        )}
+        <Text title={t('Комментарии')} className={cls.commentTitle} />
+
+        <AddCommentForm onSendComment={onSendComment} />
 
         <CommentList comments={comments} isLoading={commentIsLoading} />
       </div>
