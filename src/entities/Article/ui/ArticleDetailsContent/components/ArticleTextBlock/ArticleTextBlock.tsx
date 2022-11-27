@@ -5,7 +5,7 @@ import { Text } from 'shared/ui/Text/Text';
 import cls from './ArticleTextBlock.module.scss';
 
 interface ArticleTextBlockProps {
-  className: string;
+  className?: string;
   block: IArticleTextBlock;
 }
 
