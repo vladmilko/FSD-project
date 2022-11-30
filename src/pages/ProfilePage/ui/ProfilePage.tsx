@@ -23,6 +23,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
@@ -117,7 +118,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames('', {}, [className])}>
+      <PageWrapper className={classNames('', {}, [className])}>
         <ProfilePageHeader />
 
         {Boolean(validationErrors?.length) &&
@@ -143,7 +144,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           error={error}
           readonly={readonly}
         />
-      </div>
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };

@@ -2,7 +2,10 @@ import { EntityState } from '@reduxjs/toolkit';
 import { Article, ArticleViewType } from 'entities/Article';
 
 export interface ArticlesPageSchema extends EntityState<Article> {
+  view: ArticleViewType;
+  page: number;
+  hasMore: boolean;
+  limit?: number;
   isLoading?: boolean;
   error?: string;
-  view: ArticleViewType;
 }

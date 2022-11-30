@@ -16,26 +16,18 @@ export const ArticleList = ({
   articles,
   isLoading,
   viewType = ArticleViewType.SMALL,
-}: ArticleListProps) => {
-  if (isLoading) {
-    return (
-      <div className={classNames('', {}, [className, cls[viewType]])}>
-        <ArticleListSkeleton viewType={viewType} className={cls.card} />
-      </div>
-    );
-  }
-
-  return (
-    <div className={classNames('', {}, [className, cls[viewType]])}>
-      {!isLoading &&
-        articles.map((article) => (
-          <ArticleListItem
-            key={article.id}
-            article={article}
-            viewType={viewType}
-            className={cls.card}
-          />
-        ))}
-    </div>
-  );
-};
+}: ArticleListProps) => (
+  <div className={classNames('', {}, [className, cls[viewType]])}>
+    {articles.map((article) => (
+      <ArticleListItem
+        key={article.id}
+        article={article}
+        viewType={viewType}
+        className={cls.card}
+      />
+    ))}
+    {isLoading && (
+      <ArticleListSkeleton viewType={viewType} className={cls.card} />
+    )}
+  </div>
+);

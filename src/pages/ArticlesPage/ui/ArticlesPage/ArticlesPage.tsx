@@ -4,7 +4,9 @@ import {
   ArticleViewType,
 } from 'entities/Article';
 import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
@@ -13,7 +15,10 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import {
+  getArticlesPageError,
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
@@ -34,10 +39,21 @@ const reducers: ReducersMap = {
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const dispatch = useAppDispatch();
-  const articles = useSelector(getArticles.selectAll);
+  const { t } = useTranslation();
 
+  const articles = useSelector(getArticles.selectAll);
   const articlesView = useSelector(getArticlesPageView);
   const isLoading = useSelector(getArticlesPageIsLoading);
+  const error = useSelector(getArticlesPageError);
+
+  useInitialEffect(() => {
+    dispatch(articlesPageActions.initState());
+    dispatch(
+      fetchArticlesList({
+        page: 1,
+      }),
+    );
+  });
 
   const onChangeView = useCallback(
     (newArticlesView: ArticleViewType) => {
@@ -46,14 +62,19 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     [dispatch],
   );
 
-  useInitialEffect(() => {
-    dispatch(fetchArticlesList());
-    dispatch(articlesPageActions.initState());
-  });
+  const onLoadNextPart = () => {
+    dispatch(fetchNextArticlesPage());
+  };
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(cls.ArticlesPage, {}, [className])}>
+      {error && (
+        <Text title={t('Ошибка загрузки статей')} theme={TextTheme.ERROR} />
+      )}
+      <PageWrapper
+        onScrollEnd={onLoadNextPart}
+        className={classNames(cls.ArticlesPage, {}, [className])}
+      >
         <ArticleViewSelector view={articlesView} onViewClick={onChangeView} />
 
         <ArticleList
@@ -61,7 +82,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
           viewType={articlesView}
           isLoading={isLoading}
         />
-      </div>
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };
