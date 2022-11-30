@@ -18,7 +18,11 @@ export const ArticleList = ({
   viewType = ArticleViewType.SMALL,
 }: ArticleListProps) => {
   if (isLoading) {
-    return <ArticleListSkeleton viewType={viewType} />;
+    return (
+      <div className={classNames('', {}, [className, cls[viewType]])}>
+        <ArticleListSkeleton viewType={viewType} className={cls.card} />
+      </div>
+    );
   }
 
   return (
