@@ -21,7 +21,7 @@ const articlesPageSlice = createSlice({
   name: 'articlesPageSlice',
   initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
     isLoading: false,
-    error: undefined,
+    error: false,
     ids: [],
     entities: {},
     view: ArticleViewType.SMALL,
@@ -48,7 +48,7 @@ const articlesPageSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchArticlesList.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
@@ -61,7 +61,7 @@ const articlesPageSlice = createSlice({
       )
       .addCase(fetchArticlesList.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = Boolean(action.payload);
       });
   },
 });
