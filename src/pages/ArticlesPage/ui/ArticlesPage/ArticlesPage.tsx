@@ -3,8 +3,6 @@ import {
   ArticleViewSelector,
   ArticleViewType,
 } from 'entities/Article';
-import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList';
-import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -17,6 +15,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
@@ -47,12 +47,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const error = useSelector(getArticlesPageError);
 
   useInitialEffect(() => {
-    dispatch(articlesPageActions.initState());
-    dispatch(
-      fetchArticlesList({
-        page: 1,
-      }),
-    );
+    dispatch(initArticlesPage());
   });
 
   const onChangeView = useCallback(
@@ -67,7 +62,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   };
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       {error && (
         <Text title={t('Ошибка загрузки статей')} theme={TextTheme.ERROR} />
       )}

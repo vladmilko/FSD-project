@@ -8,4 +8,6 @@ export interface ArticlesPageSchema extends EntityState<Article> {
   error: boolean;
   limit?: number;
   isLoading?: boolean;
+
+  _inited: boolean;
 }
