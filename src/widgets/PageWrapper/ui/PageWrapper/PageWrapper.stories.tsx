@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { PageWrapper } from './PageWrapper';
 
 export default {
-  title: 'shared/PageWrapper',
+  title: 'widgets/PageWrapper',
   component: PageWrapper,
   argTypes: {
     backgroundColor: { control: 'color' },

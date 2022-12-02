@@ -13,7 +13,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from 'widgets/PageWrapper';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
@@ -69,6 +69,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
       <PageWrapper
         onScrollEnd={onLoadNextPart}
         className={classNames(cls.ArticlesPage, {}, [className])}
+        shouldSaveScrollPosition
       >
         <ArticleViewSelector view={articlesView} onViewClick={onChangeView} />
 
