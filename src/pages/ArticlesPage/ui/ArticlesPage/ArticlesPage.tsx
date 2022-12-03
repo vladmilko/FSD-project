@@ -27,7 +27,7 @@ import cls from './ArticlesPage.module.scss';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 
 interface ArticlesPageProps {
-  className: string;
+  className?: string;
 }
 
 const reducers: ReducersMap = {

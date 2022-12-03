@@ -27,7 +27,7 @@ import { fetchArticleRecommendations } from '../../model/services/fetchArticleRe
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
-  className: string;
+  className?: string;
 }
 
 const reducers: ReducersMap = {
