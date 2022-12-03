@@ -3,7 +3,7 @@ import { CommentList } from 'entities/Comment';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
   DynamicModuleLoader,
@@ -13,8 +13,6 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { AddCommentForm } from 'features/AddCommentForm';
-import { Button } from 'shared/ui/Button/Button';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { PageWrapper } from 'widgets/PageWrapper';
 import { getArticleRecommendationsIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recommendations';
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
@@ -26,6 +24,7 @@ import cls from './ArticleDetailsPage.module.scss';
 import { getArticleRecommendations } from '../../model/slices/articleDetailsPageRecommendationsSlice';
 // eslint-disable-next-line max-len
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
   className: string;
@@ -37,7 +36,6 @@ const reducers: ReducersMap = {
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation('article-details');
   const { articleId } = useParams<{ articleId: string }>();
 
@@ -56,10 +54,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     [dispatch],
   );
 
-  const onBackToList = () => {
-    navigate(RoutePath.articles);
-  };
-
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(articleId));
     dispatch(fetchArticleRecommendations());
@@ -70,7 +64,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <PageWrapper
         className={classNames(cls.ArticleDetailsPage, {}, [className])}
       >
-        <Button onClick={onBackToList}>{t('Назад к списку')}</Button>
+        <ArticleDetailsPageHeader />
 
         {articleId && <ArticleDetails articleId={articleId} />}
         {!articleId && t('Статья не найдена')}
