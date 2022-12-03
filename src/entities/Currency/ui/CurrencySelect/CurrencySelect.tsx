@@ -11,10 +11,12 @@ interface CurrencySelectProps {
   readonly?: boolean;
 }
 
-const options: SelectOption[] = Object.values(Currency).map((currency) => ({
-  content: currency,
-  value: currency,
-}));
+const options: SelectOption<Currency>[] = Object.values(Currency).map(
+  (currency) => ({
+    content: currency,
+    value: currency,
+  }),
+);
 
 export const CurrencySelect = memo(
   ({ className, value, onChange, readonly }: CurrencySelectProps) => {

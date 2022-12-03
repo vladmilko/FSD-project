@@ -2,14 +2,28 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Card.module.scss';
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string;
-  children: ReactNode;
+export enum CardTheme {
+  NORMAL = 'normal',
+  OUTLINED = 'outlined',
 }
 
-export const Card = ({ className, children, ...otherProps }: CardProps) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div className={classNames(cls.Card, {}, [className])} {...otherProps}>
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  className?: string;
+  theme?: CardTheme;
+}
+
+export const Card = ({
+  className,
+  children,
+  theme = CardTheme.NORMAL,
+  ...otherProps
+}: CardProps) => (
+  <div
+    className={classNames(cls.Card, {}, [className, cls[theme]])}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...otherProps}
+  >
     {children}
   </div>
 );

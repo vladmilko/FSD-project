@@ -11,10 +11,12 @@ interface CountrySelectProps {
   readonly?: boolean;
 }
 
-const options: SelectOption[] = Object.values(Country).map((country) => ({
-  content: country,
-  value: country,
-}));
+const options: SelectOption<Country>[] = Object.values(Country).map(
+  (country) => ({
+    content: country,
+    value: country,
+  }),
+);
 
 export const CountrySelect = memo(
   ({ className, value, onChange, readonly }: CountrySelectProps) => {

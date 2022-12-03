@@ -60,7 +60,7 @@ export const PageWrapper = ({
       onScroll={shouldSaveScrollPosition ? onScroll : undefined}
     >
       {children}
-      <div ref={triggerRef} />
+      {onScrollEnd && <div ref={triggerRef} className={cls.trigger} />}
     </section>
   );
 };
