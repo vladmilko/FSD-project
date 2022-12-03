@@ -13,14 +13,15 @@ const commentsAdapter = createEntityAdapter<Comment>({
 });
 
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-  (state) => state.articleDetailsComments || commentsAdapter.getInitialState(),
+  (state) =>
+    state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
 const articleDetailsCommentsSlice = createSlice({
   name: 'articleDetailsCommentsSlice',
   initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>({
     isLoading: false,
-    error: undefined,
+    error: false,
     ids: [],
     entities: {},
   }),
@@ -28,7 +29,7 @@ const articleDetailsCommentsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCommentsByArticleId.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
@@ -40,7 +41,7 @@ const articleDetailsCommentsSlice = createSlice({
       )
       .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = Boolean(action.payload);
       });
   },
 });

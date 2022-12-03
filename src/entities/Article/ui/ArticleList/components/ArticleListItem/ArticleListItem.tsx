@@ -6,8 +6,9 @@ import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
-import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { HTMLAttributeAnchorTarget } from 'react';
 import { ArticleTextBlock } from '../../../ArticleDetailsContent/components/ArticleTextBlock/ArticleTextBlock';
 import {
   Article,
@@ -20,6 +21,7 @@ import cls from './ArticleListItem.module.scss';
 interface ArticleListItemProps {
   viewType: ArticleViewType;
   article: Article;
+  target?: HTMLAttributeAnchorTarget;
   className?: string;
 }
 
@@ -27,13 +29,9 @@ export const ArticleListItem = ({
   className,
   viewType,
   article,
+  target,
 }: ArticleListItemProps) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-
-  const onOpenArticle = () => {
-    navigate(`${RoutePath.article_details}/${article.id}`);
-  };
 
   const articleTypes = (
     <Text text={article.type.join(', ')} className={cls.types} />
@@ -70,7 +68,12 @@ export const ArticleListItem = ({
           )}
 
           <div className={cls.footer}>
-            <Button onClick={onOpenArticle}>{t('Читать далее')}</Button>
+            <AppLink
+              to={`${RoutePath.article_details}/${article.id}`}
+              target={target}
+            >
+              <Button>{t('Читать далее')}</Button>
+            </AppLink>
           </div>
         </Card>
       </div>
@@ -78,8 +81,12 @@ export const ArticleListItem = ({
   }
 
   return (
-    <div className={classNames('', {}, [className, cls[viewType]])}>
-      <Card onClick={onOpenArticle}>
+    <AppLink
+      to={`${RoutePath.article_details}/${article.id}`}
+      target={target}
+      className={classNames('', {}, [className, cls[viewType]])}
+    >
+      <Card>
         <div className={cls.imageWrapper}>
           <img src={article.img} alt={article.title} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />
@@ -92,6 +99,6 @@ export const ArticleListItem = ({
 
         <Text text={article.title} className={cls.title} />
       </Card>
-    </div>
+    </AppLink>
   );
 };

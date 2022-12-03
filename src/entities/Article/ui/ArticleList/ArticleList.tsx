@@ -1,3 +1,4 @@
+import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
@@ -11,12 +12,14 @@ interface ArticleListProps {
   isLoading?: boolean;
   viewType?: ArticleViewType;
   className?: string;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleList = ({
   className,
   articles,
   isLoading,
+  target,
   viewType = ArticleViewType.SMALL,
 }: ArticleListProps) => {
   const { t } = useTranslation('articles');
@@ -38,6 +41,7 @@ export const ArticleList = ({
           key={article.id}
           article={article}
           viewType={viewType}
+          target={target}
         />
       ))}
       {isLoading && <ArticleListSkeleton viewType={viewType} />}
