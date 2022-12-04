@@ -46,6 +46,17 @@ export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [
   StoreDecorator({
+    user: {},
     articleDetails: { data: article },
+    articleDetailsPage: {
+      comments: {
+        entities: {},
+        ids: [],
+      },
+      recommendations: {
+        entities: {},
+        ids: [],
+      },
+    },
   }),
 ];

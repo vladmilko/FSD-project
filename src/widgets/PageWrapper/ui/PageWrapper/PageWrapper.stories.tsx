@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { PageWrapper } from './PageWrapper';
 
 export default {
@@ -15,4 +16,7 @@ const Template: ComponentStory<typeof PageWrapper> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  children: 'Контент в обёртке',
+};
+Primary.decorators = [StoreDecorator({})];
