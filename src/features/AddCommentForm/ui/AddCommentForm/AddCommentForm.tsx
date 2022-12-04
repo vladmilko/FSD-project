@@ -1,7 +1,3 @@
-import {
-  addCommentFormActions,
-  addCommentFormReducer,
-} from 'features/AddCommentForm/model/slices/addCommentFormSlice';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -19,6 +15,10 @@ import {
   getAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
 import cls from './AddCommentForm.module.scss';
+import {
+  addCommentFormActions,
+  addCommentFormReducer,
+} from '../../model/slices/addCommentFormSlice';
 
 export interface AddCommentFormProps {
   className?: string;

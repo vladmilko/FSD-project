@@ -14,8 +14,6 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { PageWrapper } from 'widgets/PageWrapper';
-import { getArticleRecommendationsIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recommendations';
-import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
@@ -26,6 +24,8 @@ import { getArticleRecommendations } from '../../model/slices/articleDetailsPage
 // eslint-disable-next-line max-len
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { articleDetailsPageReducer } from '../../model/slices';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 
 interface ArticleDetailsPageProps {
   className?: string;

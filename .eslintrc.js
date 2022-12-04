@@ -18,7 +18,13 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'i18next',
+    'react-hooks',
+    'vlad-milko-plugin',
+  ],
   rules: {
     'react/jsx-indent': [2, 2],
     'react/jsx-indent-props': [2, 2],
@@ -41,6 +47,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'no-param-reassign': 'off',
     'no-undef': 'off',
+    'vlad-milko-plugin/fsd-valid-path-checker': 'error',
     'max-len': [
       'error',
       {

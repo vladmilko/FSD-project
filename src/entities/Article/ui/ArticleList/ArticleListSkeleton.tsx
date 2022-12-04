@@ -1,5 +1,5 @@
-import { ArticleViewType } from 'entities/Article/model/types/article';
 import { Fragment } from 'react';
+import { ArticleViewType } from '../../model/types/article';
 import { ArticleListItemSkeleton } from './components/ArticleListItem/ArticleListItemSkeleton';
 
 interface ArticleListSkeletonProps {
