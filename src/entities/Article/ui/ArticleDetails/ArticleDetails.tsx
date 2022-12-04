@@ -13,6 +13,7 @@ import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import {
   getArticleDetailsData,
@@ -50,7 +51,10 @@ export const ArticleDetails = ({
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div className={classNames(cls.ArticleDetails, {}, [className])}>
+      <VStack
+        gap="16"
+        className={classNames(cls.ArticleDetails, {}, [className])}
+      >
         {isLoading && (
           <>
             <Skeleton
@@ -76,37 +80,39 @@ export const ArticleDetails = ({
 
         {!error && !isLoading && articleDetailsData && (
           <>
-            <div className={cls.avatarWrapper}>
+            <HStack justify="center" className={cls.avatarWrapper}>
               <Avatar
                 size={200}
                 src={articleDetailsData?.img}
                 className={cls.avatar}
               />
-            </div>
+            </HStack>
 
-            <Text
-              className={cls.title}
-              title={articleDetailsData?.title}
-              text={articleDetailsData?.subtitle}
-              size={TextSize.L}
-            />
+            <VStack gap="8" max>
+              <Text
+                className={cls.title}
+                title={articleDetailsData?.title}
+                text={articleDetailsData?.subtitle}
+                size={TextSize.L}
+              />
 
-            <div className={cls.articleInfo}>
-              <Icon className={cls.icon} Svg={EyeIcon} />
-              <Text text={String(articleDetailsData?.views)} />
-            </div>
+              <HStack gap="8" className={cls.articleInfo} max>
+                <Icon className={cls.icon} Svg={EyeIcon} />
+                <Text text={String(articleDetailsData?.views)} />
+              </HStack>
 
-            <div className={cls.articleInfo}>
-              <Icon className={cls.icon} Svg={CalendarIcon} />
-              <Text text={articleDetailsData?.createdAt} />
-            </div>
+              <HStack gap="8" className={cls.articleInfo} max>
+                <Icon className={cls.icon} Svg={CalendarIcon} />
+                <Text text={articleDetailsData?.createdAt} />
+              </HStack>
+            </VStack>
 
             {articleDetailsData?.blocks.map((block) => (
               <ArticleDetailsContent key={block.id} block={block} />
             ))}
           </>
         )}
-      </div>
+      </VStack>
     </DynamicModuleLoader>
   );
 };

@@ -15,6 +15,7 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { PageWrapper } from 'widgets/PageWrapper';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { VStack } from 'shared/ui/Stack';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
@@ -65,29 +66,31 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <PageWrapper
         className={classNames(cls.ArticleDetailsPage, {}, [className])}
       >
-        <ArticleDetailsPageHeader />
+        <VStack gap="16" max>
+          <ArticleDetailsPageHeader />
 
-        {articleId && <ArticleDetails articleId={articleId} />}
-        {!articleId && t('Статья не найдена')}
+          {articleId && <ArticleDetails articleId={articleId} />}
+          {!articleId && t('Статья не найдена')}
 
-        <Text
-          size={TextSize.L}
-          className={cls.commentTitle}
-          title={t('Рекомендуем')}
-        />
-        <ArticleList
-          articles={recommendations}
-          isLoading={recommendationsIsLoading}
-          className={cls.recommendations}
-          target="_blank"
-        />
+          <Text
+            size={TextSize.L}
+            className={cls.commentTitle}
+            title={t('Рекомендуем')}
+          />
+          <ArticleList
+            articles={recommendations}
+            isLoading={recommendationsIsLoading}
+            className={cls.recommendations}
+            target="_blank"
+          />
 
-        <Text title={t('Комментарии')} className={cls.commentTitle} />
-        <Suspense fallback={<Loader />}>
-          <AddCommentForm onSendComment={onSendComment} />
-        </Suspense>
+          <Text title={t('Комментарии')} className={cls.commentTitle} />
+          <Suspense fallback={<Loader />}>
+            <AddCommentForm onSendComment={onSendComment} />
+          </Suspense>
 
-        <CommentList comments={comments} isLoading={commentIsLoading} />
+          <CommentList comments={comments} isLoading={commentIsLoading} />
+        </VStack>
       </PageWrapper>
     </DynamicModuleLoader>
   );

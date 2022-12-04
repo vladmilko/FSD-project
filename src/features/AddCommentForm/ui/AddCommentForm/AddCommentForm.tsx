@@ -10,6 +10,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { HStack } from 'shared/ui/Stack';
 import {
   getAddCommentFormError,
   getAddCommentFormText,
@@ -50,7 +51,11 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(cls.AddCommentForm, {}, [className])}>
+      <HStack
+        justify="between"
+        className={classNames(cls.AddCommentForm, {}, [className])}
+        max
+      >
         {error && (
           <Text
             text={t('Ошибка отправки комментария')}
@@ -64,7 +69,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
           className={cls.input}
         />
         <Button onClick={onSendHandler}>{t('Отправить')}</Button>
-      </div>
+      </HStack>
     </DynamicModuleLoader>
   );
 };
