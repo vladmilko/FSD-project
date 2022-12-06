@@ -54,13 +54,13 @@ export const PageWrapper = ({
   }, 500);
 
   return (
-    <section
+    <main
       ref={wrapperRef}
       className={classNames(cls.PageWrapper, {}, [className])}
       onScroll={shouldSaveScrollPosition ? onScroll : undefined}
     >
       {children}
       {onScrollEnd && <div ref={triggerRef} className={cls.trigger} />}
-    </section>
+    </main>
   );
 };
