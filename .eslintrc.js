@@ -112,5 +112,11 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
       },
     },
+    {
+      files: ['**/scripts/createSlice/**/*.js'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
   ],
 };
