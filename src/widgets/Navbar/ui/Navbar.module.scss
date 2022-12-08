@@ -3,10 +3,12 @@
   height: var(--navbar-height);
   background: var(--inverted-bg-color);
   display: flex;
-  padding: 10px;
+  align-items: center;
+  padding: 20px;
 }
 
-.links {
+.links,
+.dropdown {
   margin-left: auto;
 }
 
