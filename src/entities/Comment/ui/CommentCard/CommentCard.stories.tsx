@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import avatar from 'shared/assets/tests/storybook.jpg';
 import { CommentCard } from './CommentCard';
 
 export default {
@@ -19,6 +20,6 @@ Primary.args = {
   comment: {
     id: '1',
     text: 'hello world',
-    user: { id: '1', username: 'Vasya' },
+    user: { id: '1', username: 'Vasya', avatar },
   },
 };
