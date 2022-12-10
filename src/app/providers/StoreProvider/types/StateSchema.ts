@@ -6,7 +6,6 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsSchema } from 'entities/Article';
@@ -14,14 +13,17 @@ import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ScrollSchema } from 'features/SaveScrollPosition';
+import { rtkApi } from 'shared/api/rtkApi';
+import { EditableProfileCardSchema } from 'features/EditableProfileCard';
 
 export interface StateSchema {
   user: UserSchema;
   scrollPosition: ScrollSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // Асинхронные редьюсеры
   loginForm?: LoginSchema;
-  profile?: ProfileSchema;
+  profile?: EditableProfileCardSchema;
   articleDetails?: ArticleDetailsSchema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: ArticlesPageSchema;
