@@ -14,6 +14,18 @@ module.exports = {
     __API__: true,
     __PROJECT__: 'jest',
   },
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '<rootDir>/reports/unit',
+        filename: 'report.html',
+        openReport: true,
+        inlineSource: true,
+      },
+    ],
+  ],
   coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
   // An array of directory names to be searched recursively up from the requiring module's location
   moduleDirectories: ['node_modules'],
