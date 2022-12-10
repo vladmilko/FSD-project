@@ -28,6 +28,7 @@ interface TextProps {
   align?: TextAlign;
   size?: TextSize;
   TextTag?: 'h1' | 'h2' | 'h3' | 'p';
+  'data-testid'?: string;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -39,10 +40,12 @@ export const Text = memo((props: TextProps) => {
     align = TextAlign.LEFT,
     size = TextSize.M,
     TextTag = 'p',
+    'data-testid': dataTestId,
   } = props;
 
   return (
     <div
+      data-testid={dataTestId}
       className={classNames(cls.Text, {}, [
         className,
         cls[theme],

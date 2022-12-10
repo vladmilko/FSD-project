@@ -21,7 +21,6 @@ module.exports = {
       {
         publicPath: '<rootDir>/reports/unit',
         filename: 'report.html',
-        openReport: true,
         inlineSource: true,
       },
     ],

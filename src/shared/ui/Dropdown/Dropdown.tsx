@@ -4,6 +4,7 @@ import { Fragment, ReactNode } from 'react';
 import { DropdownDirection } from 'shared/types/ui';
 import { AppLink } from '../AppLink/AppLink';
 import cls from './Dropdown.module.scss';
+import { Button } from '../Button/Button';
 
 export interface DropdownItem {
   disabled?: boolean;
@@ -35,29 +36,38 @@ export function Dropdown(props: DropdownProps) {
     <Menu as="div" className={classNames(cls.Dropdown, {}, [className])}>
       <Menu.Button className={cls.btn}>{trigger}</Menu.Button>
       <Menu.Items className={classNames(cls.menu, {}, menuClasses)}>
-        {items.map((item) => {
-          const content = ({ active }: { active: boolean }) => (
-            <button
-              type="button"
-              disabled={item.disabled}
-              onClick={item.onClick}
-              className={classNames(cls.item, { [cls.active]: active })}
-            >
-              {item.content}
-            </button>
-          );
-
+        {items.map((item, index) => {
           if (item.href) {
             return (
-              <Menu.Item as={AppLink} to={item.href} disabled={item.disabled}>
-                {content}
+              <Menu.Item
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                disabled={item.disabled}
+              >
+                {({ active }) => (
+                  <AppLink
+                    to={item.href as string}
+                    onClick={item.onClick}
+                    className={classNames(cls.item, { [cls.active]: active })}
+                  >
+                    {item.content}
+                  </AppLink>
+                )}
               </Menu.Item>
             );
           }
 
           return (
-            <Menu.Item as={Fragment} disabled={item.disabled}>
-              {content}
+            // eslint-disable-next-line react/no-array-index-key
+            <Menu.Item key={index} as={Fragment} disabled={item.disabled}>
+              {({ active }) => (
+                <Button
+                  disabled={item.disabled}
+                  className={classNames(cls.item, { [cls.active]: active })}
+                >
+                  {item.content}
+                </Button>
+              )}
             </Menu.Item>
           );
         })}

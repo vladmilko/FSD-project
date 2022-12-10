@@ -16,7 +16,7 @@ export const ArticleRecommendationsList = memo(
     const { t } = useTranslation();
     const {
       isLoading,
-      data: articles,
+      data: articles = [],
       error,
     } = useArticleRecommendationsList(3);
 
