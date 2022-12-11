@@ -1,4 +1,9 @@
-import { getUserAuthData, userActions } from 'entities/User';
+import {
+  getUserAuthData,
+  isUserAdmin,
+  isUserManager,
+  userActions,
+} from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +27,10 @@ export const Navbar = memo(({ classname }: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState(false);
 
   const authData = useSelector(getUserAuthData);
+
+  const isAdmin = useSelector(isUserAdmin);
+  const isManager = useSelector(isUserManager);
+  const isAdminPanelAvailable = isAdmin || isManager;
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -52,6 +61,14 @@ export const Navbar = memo(({ classname }: NavbarProps) => {
           direction="bottomLeft"
           className={cls.dropdown}
           items={[
+            ...(isAdminPanelAvailable
+              ? [
+                {
+                  content: t('Админка'),
+                  href: RoutePath.admin_panel,
+                },
+              ]
+              : []),
             {
               content: t('Профиль'),
               href: `${RoutePath.profile}/${authData.id}`,

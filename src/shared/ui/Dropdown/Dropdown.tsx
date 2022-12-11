@@ -63,6 +63,7 @@ export function Dropdown(props: DropdownProps) {
               {({ active }) => (
                 <Button
                   disabled={item.disabled}
+                  onClick={item.onClick}
                   className={classNames(cls.item, { [cls.active]: active })}
                 >
                   {item.content}
