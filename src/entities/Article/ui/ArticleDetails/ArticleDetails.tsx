@@ -26,7 +26,7 @@ import { ArticleDetailsContent } from '../ArticleDetailsContent/ArticleDetailsCo
 
 interface ArticleDetailsProps {
   className?: string;
-  articleId: string;
+  articleId?: string;
 }
 
 const reducers: ReducersMap = {

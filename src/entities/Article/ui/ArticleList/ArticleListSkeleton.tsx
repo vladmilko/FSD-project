@@ -12,7 +12,7 @@ export const ArticleListSkeleton = ({
   className,
 }: ArticleListSkeletonProps) => (
   <>
-    {new Array(viewType === ArticleViewType.SMALL ? 3 : 9)
+    {new Array(viewType === ArticleViewType.SMALL ? 9 : 3)
       .fill(
         <ArticleListItemSkeleton viewType={viewType} className={className} />,
       )

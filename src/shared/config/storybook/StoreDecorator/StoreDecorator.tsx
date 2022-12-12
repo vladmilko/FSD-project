@@ -6,7 +6,7 @@ import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetai
 import { addCommentFormReducer } from 'features/AddCommentForm/model/slices/addCommentFormSlice';
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import { articlesPageReducer } from 'pages/ArticlesPage/model/slices/articlesPageSlice';
-import { profileReducer } from 'features/editableProfileCard/model/slice/profileSlice';
+import { profileReducer } from 'features/EditableProfileCard/model/slice/profileSlice';
 
 const defaultAsyncReducers: ReducersMap = {
   loginForm: loginReducer,

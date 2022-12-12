@@ -49,6 +49,7 @@ const article = {
   ],
 } as Article;
 
+// TODO: Поправить стори
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [

@@ -1,9 +1,9 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Article, ArticleViewType } from '../../model/types/article';
-import cls from './ArticleList.module.scss';
 import { ArticleListSkeleton } from './ArticleListSkeleton';
 import { ArticleListItem } from './components/ArticleListItem/ArticleListItem';
 
@@ -26,16 +26,21 @@ export const ArticleList = ({
 
   if (!isLoading && !articles.length) {
     return (
-      <div
-        className={classNames(cls.ArticleList, {}, [className, cls[viewType]])}
-      >
+      <div className={classNames('', {}, [className])}>
         <Text size={TextSize.L} title={t('Статьи не найдены')} />
       </div>
     );
   }
 
+  const LayoutComponent = viewType === ArticleViewType.SMALL ? HStack : VStack;
+
   return (
-    <div className={classNames('', {}, [className, cls[viewType]])}>
+    <LayoutComponent
+      gap="8"
+      flexWrap="wrap"
+      max
+      className={classNames('', {}, [className])}
+    >
       {articles.map((article) => (
         <ArticleListItem
           key={article.id}
@@ -44,7 +49,9 @@ export const ArticleList = ({
           target={target}
         />
       ))}
-      {isLoading && <ArticleListSkeleton viewType={viewType} />}
-    </div>
+      {isLoading && (
+        <ArticleListSkeleton viewType={viewType} className={className} />
+      )}
+    </LayoutComponent>
   );
 };

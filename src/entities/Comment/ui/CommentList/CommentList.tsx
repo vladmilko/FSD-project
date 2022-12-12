@@ -30,7 +30,7 @@ export const CommentList = ({
   }
 
   return (
-    <VStack gap="16" className={classNames('', {}, [className])} max>
+    <VStack gap="16" max className={classNames('', {}, [className])}>
       {comments?.map((comment) => (
         <CommentCard comment={comment} />
       ))}

@@ -76,6 +76,7 @@ module.exports = {
           'gap',
           'role',
           'as',
+          'flexWrap',
         ],
       },
     ],
