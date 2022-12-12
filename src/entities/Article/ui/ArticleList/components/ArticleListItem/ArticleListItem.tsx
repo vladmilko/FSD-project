@@ -10,13 +10,12 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { HTMLAttributeAnchorTarget } from 'react';
 import { ArticleTextBlock } from '../../../ArticleDetailsContent/components/ArticleTextBlock/ArticleTextBlock';
+import { Article, IArticleTextBlock } from '../../../../model/types/article';
+import cls from './ArticleListItem.module.scss';
 import {
-  Article,
   ArticleBlockType,
   ArticleViewType,
-  IArticleTextBlock,
-} from '../../../../model/types/article';
-import cls from './ArticleListItem.module.scss';
+} from '../../../../model/consts/consts';
 
 interface ArticleListItemProps {
   viewType: ArticleViewType;

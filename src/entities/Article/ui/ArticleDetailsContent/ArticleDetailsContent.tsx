@@ -1,8 +1,9 @@
-import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+import { ArticleBlock } from '../../model/types/article';
 import { ArticleCodeBlock } from './components/ArticleCodeBlock/ArticleCodeBlock';
 import { ArticleImageBlock } from './components/ArticleImageBlock/ArticleImageBlock';
 import { ArticleTextBlock } from './components/ArticleTextBlock/ArticleTextBlock';
 import cls from './ArticleDetailsContent.module.scss';
+import { ArticleBlockType } from '../../model/consts/consts';
 
 interface ArticleDetailsContentProps {
   block: ArticleBlock;

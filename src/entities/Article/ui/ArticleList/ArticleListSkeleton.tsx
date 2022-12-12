@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { ArticleViewType } from '../../model/types/article';
+import { ArticleViewType } from '../../model/consts/consts';
 import { ArticleListItemSkeleton } from './components/ArticleListItem/ArticleListItemSkeleton';
 
 interface ArticleListSkeletonProps {

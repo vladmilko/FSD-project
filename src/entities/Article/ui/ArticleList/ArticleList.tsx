@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize } from 'shared/ui/Text/Text';
-import { Article, ArticleViewType } from '../../model/types/article';
+import { ArticleViewType } from '../../model/consts/consts';
+import { Article } from '../../model/types/article';
 import { ArticleListSkeleton } from './ArticleListSkeleton';
 import { ArticleListItem } from './components/ArticleListItem/ArticleListItem';
 
