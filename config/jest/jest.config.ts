@@ -1,11 +1,7 @@
-const path = require('path');
+import path from 'path';
+import { Config } from '@jest/types';
 
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
- */
-
-module.exports = {
+const config: Config.InitialOptions = {
   testEnvironment: 'jsdom',
   clearMocks: false,
   // A set of global variables that need to be available in all test environments
@@ -203,3 +199,5 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+export default config;
