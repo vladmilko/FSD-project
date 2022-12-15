@@ -14,6 +14,7 @@ export const ArticleRecommendationsList = memo(
   (props: ArticleRecommendationsListProps) => {
     const { className } = props;
     const { t } = useTranslation();
+
     const {
       isLoading,
       data: articles = [],

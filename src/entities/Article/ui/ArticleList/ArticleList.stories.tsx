@@ -118,7 +118,7 @@ ListSmall.args = {
 
 export const ListBig = Template.bind({});
 ListBig.args = {
-  articles: new Array(9).fill(0).map((item, index) => ({
+  articles: new Array(3).fill(0).map((item, index) => ({
     ...article,
     id: String(index),
   })),

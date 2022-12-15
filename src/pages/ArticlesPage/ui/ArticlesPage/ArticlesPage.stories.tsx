@@ -1,6 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import withMock from 'storybook-addon-mock';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import Img from 'shared/assets/tests/storybook.jpg';
 import {
   Article,
   ArticleSortField,
@@ -15,6 +17,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  decorators: [withMock],
 } as ComponentMeta<typeof ArticlesPage>;
 
 const Template: ComponentStory<typeof ArticlesPage> = (props) => (
@@ -25,14 +28,13 @@ const article = {
   id: '1',
   title: 'Javascript news asfasjf asfjkask f',
   subtitle: 'Что нового в JS за 2022 год?',
-  img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+  img: Img,
   views: 1022,
   createdAt: '26.02.2022',
   user: {
     id: '1',
-    username: 'Ulbi tv',
-    avatar:
-      'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+    username: 'admin',
+    avatar: Img,
   },
   type: ['IT', 'SCIENCE', 'POLITICS', 'ECONOMICS'],
   blocks: [
@@ -49,7 +51,6 @@ const article = {
   ],
 } as Article;
 
-// TODO: Поправить стори
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [
@@ -58,14 +59,16 @@ Primary.decorators = [
       _inited: false,
       isLoading: false,
       error: false,
-      ids: ['1'],
+      ids: ['1', '2', '3'],
       entities: {
         1: article,
+        2: { ...article, id: '2' },
+        3: { ...article, id: '3' },
       },
       view: ArticleViewType.SMALL,
       page: 1,
       hasMore: true,
-      limit: 9,
+      limit: 3,
       sort: ArticleSortField.CREATED,
       search: '',
       order: 'asc',
@@ -73,3 +76,28 @@ Primary.decorators = [
     },
   }),
 ];
+
+Primary.parameters = {
+  mockData: [
+    {
+      url: `${__API__}/articles?_expand=user&_limit=3&_page=2&_sort=createdAt&_order=asc&q=`,
+      method: 'GET',
+      status: 200,
+      response: [
+        { ...article, id: '1' },
+        { ...article, id: '2' },
+        { ...article, id: '3' },
+      ],
+    },
+    {
+      url: `${__API__}/articles?_expand=user&_limit=3&_page=2&_sort=createdAt&_order=asc&q&type=IT `,
+      method: 'GET',
+      status: 200,
+      response: [
+        { ...article, id: '1' },
+        { ...article, id: '2' },
+        { ...article, id: '3' },
+      ],
+    },
+  ],
+};
