@@ -77,6 +77,7 @@ module.exports = {
           'role',
           'as',
           'flexWrap',
+          'borderRadius',
         ],
       },
     ],
