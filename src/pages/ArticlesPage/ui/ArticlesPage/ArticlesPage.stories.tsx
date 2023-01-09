@@ -1,14 +1,14 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import withMock from 'storybook-addon-mock';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import Img from 'shared/assets/tests/storybook.jpg';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import Img from '@/shared/assets/tests/storybook.jpg';
 import {
   Article,
   ArticleSortField,
   ArticleType,
   ArticleViewType,
-} from 'entities/Article';
+} from '@/entities/Article';
 import ArticlesPage from './ArticlesPage';
 
 export default {

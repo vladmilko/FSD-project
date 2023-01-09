@@ -41,6 +41,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '@': path.resolve(__dirname, '..', '..', 'src'),
   },
 
   // All imported modules in your tests should be mocked automatically

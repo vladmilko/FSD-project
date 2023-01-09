@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import avatar from 'shared/assets/tests/storybook.jpg';
+import avatar from '@/shared/assets/tests/storybook.jpg';
 import { CommentCard } from './CommentCard';
 
 export default {

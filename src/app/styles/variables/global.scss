@@ -27,10 +27,11 @@
   --sidebar-width-collapsed: 80px;
 
   // z - индексы
-  --modal-z-index: 1000;
   --dropdown-z-index: 100;
   --listbox-z-index: 100;
   --sidebar-collaps-button-z-index: 100;
+  --overlay-z-index: 100;
+  --modal-z-index: 1000;
   --drawer-z-index: 10000;
 
   // Цвета
