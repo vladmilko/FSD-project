@@ -11,16 +11,21 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   className?: string;
   theme?: CardTheme;
+  fullWidth?: boolean;
 }
 
 export const Card = ({
   className,
   children,
   theme = CardTheme.NORMAL,
+  fullWidth,
   ...otherProps
 }: CardProps) => (
   <div
-    className={classNames(cls.Card, {}, [className, cls[theme]])}
+    className={classNames(cls.Card, { [cls.fullWidth]: fullWidth }, [
+      className,
+      cls[theme],
+    ])}
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...otherProps}
   >
