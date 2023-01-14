@@ -47,7 +47,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'no-param-reassign': 'off',
     'no-undef': 'off',
-    'vlad-milko-plugin/fsd-valid-path-checker': 'error',
+    'vlad-milko-plugin/fsd-valid-path-checker': ['error', { alias: '@' }],
     'max-len': [
       'error',
       {
