@@ -59,6 +59,13 @@ module.exports = {
         ],
       },
     ],
+    'vlad-milko-plugin/layer-imports': [
+      'error',
+      {
+        alias: '@',
+        ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+      },
+    ],
     'max-len': [
       'error',
       {
