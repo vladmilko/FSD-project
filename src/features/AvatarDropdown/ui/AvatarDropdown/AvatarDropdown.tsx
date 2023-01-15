@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { Dropdown } from '@/shared/ui/Popups';
 import {
@@ -42,11 +42,11 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
       items={[
         ...(isAdminPanelAvailable
           ? [
-            {
-              content: t('Админка'),
-              href: RoutePath.admin_panel,
-            },
-          ]
+              {
+                content: t('Админка'),
+                href: RoutePath.admin_panel,
+              },
+            ]
           : []),
         {
           content: t('Профиль'),
