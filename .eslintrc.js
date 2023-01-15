@@ -48,6 +48,17 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-undef': 'off',
     'vlad-milko-plugin/fsd-valid-path-checker': ['error', { alias: '@' }],
+    'vlad-milko-plugin/public-api-imports': [
+      'error',
+      {
+        alias: '@',
+        testFilesPatterns: [
+          '**/*.test.*',
+          '**/*.stories.*',
+          '**/StoreDecorator.tsx',
+        ],
+      },
+    ],
     'max-len': [
       'error',
       {
