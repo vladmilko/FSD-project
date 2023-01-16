@@ -11,11 +11,11 @@ import { RoutePath } from '@/shared/const/router';
 import { AppLink } from '@/shared/ui/AppLink';
 import { ArticleTextBlock } from '../../../ArticleDetailsContent/components/ArticleTextBlock/ArticleTextBlock';
 import { Article, IArticleTextBlock } from '../../../../model/types/article';
-import cls from './ArticleListItem.module.scss';
 import {
   ArticleBlockType,
   ArticleViewType,
 } from '../../../../model/consts/consts';
+import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
   viewType: ArticleViewType;

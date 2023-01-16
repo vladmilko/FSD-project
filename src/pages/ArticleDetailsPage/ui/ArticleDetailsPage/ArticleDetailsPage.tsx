@@ -9,12 +9,11 @@ import {
 import { PageWrapper } from '@/widgets/PageWrapper';
 import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
-import cls from './ArticleDetailsPage.module.scss';
-// eslint-disable-next-line max-len
+import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { articleDetailsPageReducer } from '../../model/slices';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { ArticleRating } from '@/features/ArticleRating';
+import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
   className?: string;

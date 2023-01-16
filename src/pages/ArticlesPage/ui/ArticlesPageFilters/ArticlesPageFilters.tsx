@@ -16,7 +16,6 @@ import { Input } from '@/shared/ui/Input';
 import { SortOrder } from '@/shared/types/sort';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
-import cls from './ArticlesPageFilters.module.scss';
 import {
   getArticlesPageOrder,
   getArticlesPageSearch,
@@ -25,6 +24,7 @@ import {
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
+import cls from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {
   className?: string;

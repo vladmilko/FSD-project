@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Article } from '../../../../model/types/article';
-import { ArticleListItem } from './ArticleListItem';
 import { ArticleViewType } from '../../../../model/consts/consts';
+import { ArticleListItem } from './ArticleListItem';
 
 export default {
   title: 'entities/Article/ArticleListItem',

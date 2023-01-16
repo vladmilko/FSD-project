@@ -15,11 +15,11 @@ import {
   getAddCommentFormError,
   getAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
-import cls from './AddCommentForm.module.scss';
 import {
   addCommentFormActions,
   addCommentFormReducer,
 } from '../../model/slices/addCommentFormSlice';
+import cls from './AddCommentForm.module.scss';
 
 export interface AddCommentFormProps {
   className?: string;

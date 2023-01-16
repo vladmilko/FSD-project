@@ -47,6 +47,22 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'no-param-reassign': 'off',
     'no-undef': 'off',
+    'import/order': [
+      'warn',
+      {
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'external',
+            // position: 'before',
+          },
+        ],
+        // alphabetize: {
+        //   order: 'asc',
+        //   caseInsensitive: false,
+        // },
+      },
+    ],
     'vlad-milko-plugin/fsd-valid-path-checker': ['error', { alias: '@' }],
     'vlad-milko-plugin/public-api-imports': [
       'error',
