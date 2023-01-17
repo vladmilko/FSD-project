@@ -7,8 +7,8 @@ import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import { Card } from '@/shared/ui/Card';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
-import { RoutePath } from '@/shared/const/router';
 import { AppLink } from '@/shared/ui/AppLink';
+import { getRouteArticleDetails } from '@/shared/const/router';
 import { ArticleTextBlock } from '../../../ArticleDetailsContent/components/ArticleTextBlock/ArticleTextBlock';
 import { Article, IArticleTextBlock } from '../../../../model/types/article';
 import {
@@ -67,10 +67,7 @@ export const ArticleListItem = ({
           )}
 
           <div className={cls.footer}>
-            <AppLink
-              to={`${RoutePath.article_details}/${article.id}`}
-              target={target}
-            >
+            <AppLink to={getRouteArticleDetails(article.id)} target={target}>
               <Button>{t('Читать далее')}</Button>
             </AppLink>
           </div>
@@ -81,7 +78,7 @@ export const ArticleListItem = ({
 
   return (
     <AppLink
-      to={`${RoutePath.article_details}/${article.id}`}
+      to={getRouteArticleDetails(article.id)}
       target={target}
       className={classNames('', {}, [className, cls[viewType]])}
     >
