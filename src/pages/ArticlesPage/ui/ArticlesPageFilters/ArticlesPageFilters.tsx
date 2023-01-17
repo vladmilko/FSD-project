@@ -3,10 +3,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import {
   ArticleSortField,
-  ArticleSortSelector,
-  ArticleTypeTabs,
   ArticleViewType,
-  ArticleViewSelector,
   ArticleType,
 } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -15,6 +12,9 @@ import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import { SortOrder } from '@/shared/types/sort';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
   getArticlesPageOrder,

@@ -32,7 +32,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <AboutPage />,
   },
   [AppRoutes.PROFILE]: {
-    path: getRouteProfile(':id'),
+    path: getRouteProfile(':profileId'),
     element: <ProfilePage />,
     authOnly: true,
   },
@@ -42,7 +42,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     authOnly: true,
   },
   [AppRoutes.ARTICLE_DETAILS]: {
-    path: getRouteArticleDetails(':id'),
+    path: getRouteArticleDetails(':articleId'),
     element: <ArticleDetailsPage />,
     authOnly: true,
   },
@@ -52,7 +52,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     authOnly: true,
   },
   [AppRoutes.ARTICLE_EDIT]: {
-    path: getRouteArticleEdit(':id'),
+    path: getRouteArticleEdit(':articleId'),
     element: <ArticleEditPage />,
     authOnly: true,
   },

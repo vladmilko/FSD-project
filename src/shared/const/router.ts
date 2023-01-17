@@ -14,10 +14,12 @@ export enum AppRoutes {
 
 export const getRouteMain = () => '/';
 export const getRouteAbout = () => '/about';
-export const getRouteProfile = (id: string) => `/profile/${id}`;
+export const getRouteProfile = (profileId: string) => `/profile/${profileId}`;
 export const getRouteArticles = () => '/articles';
-export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
+export const getRouteArticleDetails = (articleId: string) =>
+  `/articles/${articleId}`;
 export const getRouteArticleCreate = () => '/articles/new';
-export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
+export const getRouteArticleEdit = (articleId: string) =>
+  `/articles/${articleId}/edit`;
 export const getRouteAdmin = () => '/admin';
 export const getRouteForbidden = () => '/forbidden';
