@@ -7,13 +7,22 @@ import { Theme } from '../../src/shared/const/theme';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  layout: 'fullscreen',
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
-  layout: 'fullscreen',
+  // TODO: Разобраться почему перекрываются стили ThemeDecorator'ом
+  themes: {
+    default: 'light',
+    list: [
+      { name: 'light', class: Theme.LIGHT, color: '#fff' },
+      { name: 'dark', class: Theme.DARK, color: '#000' },
+      { name: 'orange', class: Theme.ORANGE, color: '#ffb005' },
+    ],
+  },
 };
 
 addDecorator(StyleDecorator);
