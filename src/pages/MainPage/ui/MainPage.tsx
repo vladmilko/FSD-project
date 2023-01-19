@@ -5,7 +5,9 @@ import { PageWrapper } from '@/widgets/PageWrapper';
 const MainPage = memo(() => {
   const { t } = useTranslation();
 
-  return <PageWrapper>{t('Главная страница')}</PageWrapper>;
+  return (
+    <PageWrapper data-testid="MainPage">{t('Главная страница')}</PageWrapper>
+  );
 });
 
 export default MainPage;

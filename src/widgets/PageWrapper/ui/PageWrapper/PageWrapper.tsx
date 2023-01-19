@@ -11,9 +11,10 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+import { TestProps } from '@/shared/types/tests';
 import cls from './PageWrapper.module.scss';
 
-interface PageWrapperProps {
+interface PageWrapperProps extends TestProps {
   children: ReactNode;
   onScrollEnd?: () => void;
   className?: string;
@@ -25,6 +26,7 @@ export const PageWrapper = ({
   children,
   onScrollEnd,
   shouldSaveScrollPosition,
+  'data-testid': dataTestId,
 }: PageWrapperProps) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -58,6 +60,7 @@ export const PageWrapper = ({
       ref={wrapperRef}
       className={classNames(cls.PageWrapper, {}, [className])}
       onScroll={shouldSaveScrollPosition ? onScroll : undefined}
+      data-testid={dataTestId ?? 'Page'}
     >
       {children}
       {onScrollEnd && <div ref={triggerRef} className={cls.trigger} />}
