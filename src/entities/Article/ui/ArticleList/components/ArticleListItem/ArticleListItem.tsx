@@ -9,6 +9,8 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { AppLink } from '@/shared/ui/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Skeleton } from '@/shared/ui/Skeleton';
 import { ArticleTextBlock } from '../../../ArticleDetailsContent/components/ArticleTextBlock/ArticleTextBlock';
 import { Article, IArticleTextBlock } from '../../../../model/types/article';
 import {
@@ -60,7 +62,13 @@ export const ArticleListItem = ({
 
           {articleTypes}
 
-          <img src={article.img} alt={article.title} className={cls.img} />
+          <AppImage
+            width="100%"
+            height={250}
+            src={article.img}
+            alt={article.title}
+            className={cls.img}
+          />
 
           {textBlock && (
             <ArticleTextBlock block={textBlock} className={cls.textBlock} />
@@ -84,7 +92,12 @@ export const ArticleListItem = ({
     >
       <Card>
         <div className={cls.imageWrapper}>
-          <img src={article.img} alt={article.title} className={cls.img} />
+          <AppImage
+            fallback={<Skeleton width={200} height={200} />}
+            src={article.img}
+            alt={article.title}
+            className={cls.img}
+          />
           <Text text={article.createdAt} className={cls.date} />
         </div>
 
