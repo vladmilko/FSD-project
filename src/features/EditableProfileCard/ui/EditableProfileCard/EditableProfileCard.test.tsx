@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
-import { ComponentRender } from '@/shared/lib/tests/componentRender/componentRender';
+import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Profile } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
@@ -37,7 +37,7 @@ const options = {
 
 describe('features/EditableProfileCard', () => {
   beforeEach(() => {
-    ComponentRender(<EditableProfileCard id="1" />, options);
+    componentRender(<EditableProfileCard id="1" />, options);
   });
 
   test('Режим рид онли должен переключиться', async () => {
